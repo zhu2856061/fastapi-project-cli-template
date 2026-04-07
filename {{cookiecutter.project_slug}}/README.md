@@ -1,6 +1,3 @@
-# {{ cookiecutter.project_slug }}
-
-{{ cookiecutter.project_description }}
 
 ## 项目整体结构
 .
