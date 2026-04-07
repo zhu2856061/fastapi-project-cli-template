@@ -14,10 +14,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from src.chat_bot.api.v1.router import chat_with_llm_router
-from src.chat_bot.core.config.app_config import init_app_config
-from src.chat_bot.core.config.logging_config import init_app_logging
-from src.chat_bot.core.exceptions import AppException
+from src.{{ cookiecutter.project_slug }}.api.v1.router import chat_with_llm_router
+from src.{{ cookiecutter.project_slug }}.core.config.app_config import init_app_config
+from src.{{ cookiecutter.project_slug }}.core.config.logging_config import init_app_logging
+from src.{{ cookiecutter.project_slug }}.core.exceptions import AppException
 
 # --- Logging Configuration ---
 init_app_logging(json_logs=os.getenv("WORK_ENV", "dev") == "prod")

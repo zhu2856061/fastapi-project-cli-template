@@ -1,9 +1,62 @@
-# fastapi_standard_ai 
+# {{ cookiecutter.project_slug }}
 
-该项目将作为一个标准的fastapi范本项目，后续所有的项目都参照这个项目的结构
+{{ cookiecutter.project_description }}
 
 ## 项目整体结构
-
+.
+├── LICENSE
+├── README.md
+├── config.yaml
+├── dockerfile
+├── gunicorn_conf.py
+├── logging.ini
+├── main.py
+├── makefile
+├── pyproject.toml
+├── scripts
+│   └── run.sh
+├── src
+│   ├── __init__.py
+│   └── {{ cookiecutter.project_slug }}
+│       ├── __init__.py
+│       ├── api
+│       │   ├── __init__.py
+│       │   └── v1
+│       │       ├── __init__.py
+│       │       ├── router.py
+│       │       └── schema.py
+│       ├── core
+│       │   ├── __init__.py
+│       │   ├── chat.py
+│       │   ├── clients
+│       │   │   ├── __init__.py
+│       │   │   └── client.py
+│       │   ├── config
+│       │   │   ├── __init__.py
+│       │   │   ├── app_config.py
+│       │   │   └── logging_config.py
+│       │   ├── constants.py
+│       │   ├── database.py
+│       │   ├── dependencies.py
+│       │   ├── exceptions.py
+│       │   └── security.py
+│       ├── middleware
+│       │   ├── __init__.py
+│       │   └── super_agent_hooks.py
+│       ├── models
+│       │   └── __init__.py
+│       ├── repositories
+│       │   └── __init__.py
+│       ├── services
+│       │   ├── __init__.py
+│       │   └── chat_bot_service.py
+│       └── utils
+│           ├── __init__.py
+│           ├── common.py
+│           └── decorators.py
+├── tests
+│   └── test_client.py
+└── uv.lock
 
 ## 项目详细拆解
 
