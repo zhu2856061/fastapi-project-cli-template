@@ -1,0 +1,120 @@
+# ===============================================================
+# 1. 系统常规设置
+#
+# IP_PORT: 后端服务监听的 IP:PORT
+# WORKERS: 后端服务启动的进程数
+# TIMEOUT: 后端服务请求超时时间（秒）
+# NAME: 服务名称
+# DESC: 服务描述
+# VERSION: 服务版本
+# DEBUG: 是否开启 DEBUG 模式
+
+# ===============================================================
+SYSTEM:
+  IP_PORT: "0.0.0.0:2022"
+  WORKERS: 1
+  TIMEOUT: 30
+  NAME: {{cookiecutter.project_slug}}
+  DESC: "langgraph agent chatbot服务"
+  VERSION: "0.0.1"
+  DEBUG: False
+
+
+# ===============================================================
+# 2. 大模型API 配置
+# default_model_name 默认模型
+# model_list: 模型列表
+  # model_name: 模型名称
+  # litellm_params: 模型参数配置
+  # # model: 模型名称
+  # # api_base: API 地址
+  # # api_key: API密钥
+  # # cache: 是否缓存结果
+  # # verbose: 是否打印日志
+  # # request_timeout: 请求超时时间（秒）
+  # # temperature: 模型温度
+  # # top_p: 模型 nucleus 采样概率
+  # # max_retries: 最大重试次数
+# ===============================================================
+LLM:
+  default_model_name: "basic"
+  model_list:
+    - model_name: "basic"
+      litellm_params:
+        model: "openai/Qwen3-235B-A22B"
+        api_base: $LEXIN_LLM_URL
+        api_key: $LEXIN_LLM_API_KEY
+        cache: true
+        verbose: true
+        request_timeout: 600
+        temperature: 0.2
+        top_p: 0.2
+        max_retries: 2
+
+    - model_name: "reasoning"
+      litellm_params:
+        model: "openai/Qwen3-235B-A22B"
+        api_base: $LEXIN_LLM_URL
+        api_key: $LEXIN_LLM_API_KEY
+        cache: true
+        verbose: true
+        request_timeout: 600
+        temperature: 0.2
+        top_p: 0.2
+        top_k: 10
+        max_retries: 2
+
+    - model_name: "basic_no_thinking"
+      litellm_params:
+        model: "openai/Qwen3-235B-A22B"
+        api_base: $LEXIN_LLM_URL
+        api_key: $LEXIN_LLM_API_KEY
+        cache: true
+        verbose: true
+        request_timeout: 600
+        temperature: 0.2
+        top_p: 0.2
+        top_k: 10
+        max_retries: 2
+        chat_template_kwargs:
+          enable_thinking: false # 关闭思考模式
+
+    - model_name: "deepseek"
+      litellm_params:
+        model: "deepseek/deepseek-chat"
+        api_base: $DEEPSEEK_URL
+        api_key: $DEEPSEEK_API_KEY
+        cache: true
+        verbose: true
+        request_timeout: 600
+        temperature: 0.2
+        top_p: 0.2
+        top_k: 10
+        max_retries: 2
+
+    - model_name: "gemini"
+      litellm_params:
+        model: "openai/gemini-2.0-flash"
+        api_base: $GEMINI_URL
+        api_key: $GEMINI_API_KEY
+        cache: true
+        verbose: true
+        request_timeout: 600
+        temperature: 0.2
+        top_p: 0.2
+        top_k: 10
+        max_retries: 2
+
+
+# ===============================================================
+
+# 4. 钩子函数配置
+# Agent_Node_Hooks: Agent 节点钩子函数配置
+#   truncate_max_length: 显示长度的最大值
+#   enable_timing: 是否显示耗时
+
+# ===============================================================
+HOOK:
+  Agent_Node_Hooks:
+    truncate_max_length: 2048
+    enable_timing: true

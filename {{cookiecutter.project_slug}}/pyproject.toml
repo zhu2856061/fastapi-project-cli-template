@@ -1,0 +1,90 @@
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_description }}"
+readme = "README.md"
+requires-python = "==3.12.0"
+authors = [
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.email }}" },
+]
+license = { text = "MIT" }
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.135.3",
+    "gunicorn>=25.3.0",
+    "langchain>=1.2.15",
+    "langchain-litellm>=0.6.4",
+    "langgraph>=1.1.6",
+    "nuitka>=4.0.7",
+    "python-json-logger>=4.1.0",
+    "pyyaml>=6.0.3",
+    "requests>=2.33.1",
+    "structlog>=25.5.0",
+    "uvicorn>=0.42.0",
+    "websockets>=16.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.0",            # 超快 lint + format
+    "pre-commit>=4.0.0",
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.28.0",          # 测试用
+    "pytest-cov>=6.0.0",
+    "mypy>=1.13.0",           # 类型检查（可选）
+]
+
+# ====================== 工具配置 ======================
+
+
+[tool.uv]
+# 指定镜像源
+index-url = "https://mirrors.aliyun.com/pypi/simple"
+
+
+# ====================== Ruff 配置（推荐替代 black + isort + flake8） ======================
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["alembic/versions", "logs"]
+
+[tool.ruff.lint] # 建议加上 "I" (isort) 自动排序导入 "RUF" 不建议，对中文不友好
+select = ["E", "F", "I", "B", "C4", "SIM", "UP"]
+ignore = ["E501", "UP009"]                       # 行太长（可根据需要调整）
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# ====================== Alembic 配置 ======================
+[tool.alembic]
+script_location = "alembic"
+version_locations = "alembic/versions"
+
+# ====================== Pytest 配置 ======================
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --cov=src/vector_sevrice --cov-report=term-missing"
+
+# ====================== Mypy 配置（可选） ======================
+[tool.mypy]
+python_version = "3.12.0"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+# 忽略一些没有类型提示的第三方库报错
+ignore_missing_imports = true
+
+# ====================== Build 系统 ======================
+# 当需要把你的项目打包成whl的时候使用，但由于我们采用编译so的方式，暂时不用该方法
+# [build-system]
+# requires = ["hatchling"]          # 或使用 "setuptools" / "uv"（uv 项目常用 hatchling 或无）
+# build-backend = "hatchling.build"
+# [tool.hatch.build.targets.wheel]
+# # 关键修复：明确告诉 Hatchling 要打包 src 下的包
+# packages = ["src/vector_service"]
