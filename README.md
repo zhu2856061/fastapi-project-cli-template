@@ -1,7 +1,75 @@
-# fastapi-project-cli-template
-一种标准的fastapi开发服务模块，通过cookiecutter 构建脚手架
 
 ## 项目整体结构
+.
+├── LICENSE
+├── README.md
+├── config.yaml
+├── dockerfile
+├── gunicorn_conf.py
+├── logging.ini
+├── main.py
+├── makefile
+├── pyproject.toml
+├── scripts
+│   └── run.sh
+├── src
+│   ├── __init__.py
+│   ├── api
+│   │   ├── __init__.py
+│   │   └── v1
+│   │       ├── __init__.py
+│   │       ├── routers
+│   │       │   ├── __init__.py
+│   │       │   ├── chatbot_router.py
+│   │       │   └── vector_router.py
+│   │       └── schemas
+│   │           ├── __init__.py
+│   │           ├── chatbot_schema.py
+│   │           └── vector_schema.py
+│   ├── clients
+│   │   ├── __init__.py
+│   │   └── llm_client.py
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── app_config.py
+│   │   └── logging_config.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── chatbot
+│   │   │   ├── __init__.py
+│   │   │   ├── chat.py
+│   │   │   ├── constants.py
+│   │   │   ├── database.py
+│   │   │   ├── dependencies.py
+│   │   │   ├── exceptions.py
+│   │   │   └── security.py
+│   │   └── vector
+│   │       ├── __init__.py
+│   │       ├── constants.py
+│   │       ├── database.py
+│   │       ├── dependencies.py
+│   │       ├── exceptions.py
+│   │       ├── security.py
+│   │       └── vector_model.py
+│   ├── exceptions
+│   │   └── app_exception.py
+│   ├── middleware
+│   │   ├── __init__.py
+│   │   └── super_agent_hooks.py
+│   ├── models
+│   │   └── __init__.py
+│   ├── repositories
+│   │   └── __init__.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── chatbot_service.py
+│   │   └── vector_service.py
+│   └── utils
+│       ├── __init__.py
+│       ├── common.py
+│       └── decorators.py
+└── tests
+    └── test_client.py
 
 
 ## 项目详细拆解

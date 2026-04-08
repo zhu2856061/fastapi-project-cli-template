@@ -5,17 +5,17 @@
 from __future__ import annotations
 
 """
-src 下面的目录结构为固定结构
+业务功能模块实现区
+
+
 .
 ├── __init__.py
-├── api
-├── clients
-├── config
-├── core
-├── exceptions
-├── middleware
-├── models
-├── repositories
-├── services
-└── utils
+├── chat.py
+├── constants.py
+├── database.py
+├── dependencies.py
+├── exceptions.py
+└── security.py
+
+需要采用上述结构, 其中，chat.py可换名字， 为业务代码
 """

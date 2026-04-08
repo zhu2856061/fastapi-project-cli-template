@@ -4,4 +4,4 @@ export ENV_PATH="../.env"
 export LOGGING_PATH="../logging.ini"
 export WORK_ENV="dev"
 
-uv run uvicorn main:app --host 0.0.0.0 --port 2022
+uv run uvicorn src.main:app --host 0.0.0.0 --port 2022
