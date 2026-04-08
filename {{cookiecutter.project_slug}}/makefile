@@ -4,14 +4,14 @@ MODULE := src
 
 # 项目核心编译模块
 # 1 nuitka 编译
-# 2 添加主要文件，pyproject.toml main.py config.yaml logging.ini
+# 2 添加主要文件，pyproject.toml gunicorn_conf.py .env config.yaml logging.ini
 # 3 打包tar.gz 并 删除build过程文件, 方便docker镜像使用 
 build:
 	@echo "⏳ 开始构建..."
 	rm -rf ./build
 	python -m nuitka --module $(MODULE) --include-package=$(MODULE) --output-dir=./build
-	cp pyproject.toml main.py gunicorn_conf.py .env config.yaml logging.ini ./build
-	cd ./build && mv *.so ${MODULE}.so && tar -czvf server.tar.gz pyproject.toml main.py gunicorn_conf.py .env config.yaml logging.ini ${MODULE}.so && rm -rf pyproject.toml main.py gunicorn_conf.py .env config.yaml *.build *.pyi logging.ini ${MODULE}.so
+	cp pyproject.toml gunicorn_conf.py .env config.yaml logging.ini ./build
+	cd ./build && mv *.so ${MODULE}.so && tar -czvf server.tar.gz pyproject.toml gunicorn_conf.py .env config.yaml logging.ini ${MODULE}.so && rm -rf pyproject.toml gunicorn_conf.py .env config.yaml *.build *.pyi logging.ini ${MODULE}.so
 	@echo "✅ 构建完成！核心文件：server.tar.gz"
 
 # uv 普通同步
