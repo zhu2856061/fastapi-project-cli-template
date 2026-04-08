@@ -80,5 +80,5 @@ CMD ["gunicorn", "-c", "gunicorn_conf.py", "src.main:app"]
 # CMD ["/bin/bash", "-c", "sleep infinity"]
 
 
-# docker build -f dockerfile -t merlinzhu/nova_vector:merlin .
-# docker save -o nova_vector.tar merlinzhu/nova_vector:merlin
+# docker build -f dockerfile -t merlinzhu/chatbot:merlin .
+# docker save -o chatbot.tar merlinzhu/chatbot:merlin
