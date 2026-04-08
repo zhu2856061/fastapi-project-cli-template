@@ -40,7 +40,7 @@ def _configure_structlog(use_json: bool, log_level: str) -> None:
     ]
     # 选择渲染器
     if use_json:
-        renderer = structlog.processors.JSONRenderer(ensure_ascii=False, indent=4, sort_keys=True)
+        renderer = structlog.processors.JSONRenderer(ensure_ascii=False)
     else:
         renderer = structlog.dev.ConsoleRenderer(colors=True)
 
